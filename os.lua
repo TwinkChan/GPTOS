@@ -7,7 +7,12 @@ function os.start()
         return
     end
     
-    os.loadAPI("gui")
+    local success, err = pcall(os.loadAPI, "gui")
+    if not success then
+        print("Failed to load gui.lua:", err)
+        return
+    end
+    
     print("GUI loaded, starting GUI...")
     gui.start()
 end
