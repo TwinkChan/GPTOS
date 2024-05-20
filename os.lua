@@ -6,18 +6,18 @@ function os.start()
         return
     end
     
-    os.loadAPI("gui.lua")
+    os.loadAPI("gui")
     gui.start()
 end
 
 function os.loadAPI(api)
-    local env = setmetatable({}, { __index = _G })
-    local func, err = loadfile(api, env)
+    local env = {}
+    setmetatable(env, { __index = _G })
+    local func, err = loadfile(api .. ".lua")
     if func then
+        setfenv(func, env)
         func()
-        for k, v in pairs(env) do
-            _G[k] = v
-        end
+        _G[api] = env
     else
         print("Error loading API:", err)
     end

@@ -1,4 +1,5 @@
 gui = {}
+
 local term = term
 
 function gui.start()
@@ -6,7 +7,6 @@ function gui.start()
     term.setCursorPos(1, 1)
     print("Starting SimpleGUI...")
 
-    -- Пример окна
     gui.drawWindow(5, 5, 20, 10, "Example Window")
     
     while true do
@@ -31,6 +31,5 @@ function gui.drawWindow(x, y, width, height, title)
 end
 
 function gui.handleClick(x, y)
-    -- Пример обработки клика
     print("Clicked at: " .. x .. ", " .. y)
 end
